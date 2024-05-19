@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import styled from 'styled-components';
+import SearchBar from './SearchBar';
+import MedicineCard from './MedicineCard';
 
-function App() {
+const AppContainer = styled.div`
+  padding: 20px;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+`;
+
+const medicines = [
+  { form: 'Tablet', strength: '100 mg', packaging: '5 strips', name: 'Salt A', price: 80, availability: true },
+  { form: 'Tablet', strength: '100 mg', packaging: '5 strips', name: 'Salt B', price: 80, availability: false },
+  { form: 'Capsule', strength: '500 mg', packaging: '30 strips', name: 'Salt C', price: 80, availability: false },
+  { form: 'Tablet', strength: '100 mg', packaging: '5 strips', name: 'Salt D', price: 80, availability: true },
+];
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <SearchBar />
+      {medicines.map((medicine, index) => (
+        <MedicineCard key={index} {...medicine} />
+      ))}
+    </AppContainer>
   );
-}
+};
 
 export default App;
